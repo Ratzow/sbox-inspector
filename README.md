@@ -1,6 +1,9 @@
 # sbox-inspector
 UI Panel Inspector for S&amp;box
 
+![20210519202030_1](https://user-images.githubusercontent.com/5273873/118908963-ec849480-b8e7-11eb-96e4-ba49a40b3c9b.jpg)
+![20210519202053_1](https://user-images.githubusercontent.com/5273873/118908968-ed1d2b00-b8e7-11eb-9a17-1e7c3234a7de.jpg)
+
 ## Installation
 
 Drag the `ui` folder into the `code` folder of your gamemode. Ex. `minimal/code/ui`
