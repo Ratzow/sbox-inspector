@@ -7,7 +7,7 @@ Drag the `ui` folder into the `code` folder of your gamemode. Ex. `minimal/code/
 
 ## Usage
 
-Add the following to the setup of your main gamemode hud.
+Add the following to the setup of your main gamemode hud. Toggle by entering `inspector` in console.
 
 ```csharp
 RootPanel.AddChild<Inspector>();
