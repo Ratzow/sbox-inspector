@@ -8,11 +8,9 @@ public class InspectorTarget : Panel
 	public new const bool HasHovered = false;
 	public new const bool AcceptsFocus = false;
 	private Label _infoPanel;
-	
+
 	public InspectorTarget()
 	{
-		this.AddClass( "inspector" );
-
 		_infoPanel = this.AddChild<Label>();
 		_infoPanel.AddClass( "info" );
 
@@ -24,19 +22,16 @@ public class InspectorTarget : Panel
 
 		var root = FindRootPanel();
 
-		if (root != null && root.Style != null )
+		if ( root != null && root.Style != null )
 		{
-			root.Style.PointerEvents = "all";
-
 			var panel = InspectorUtils.GetHoveredPanel( root, root.MousePos ) ?? root;
 
-			(this.Parent as InspectorContainer).CurrentTarget = panel;
-
 			string classList;
-			if ( panel.Class.Count() > 0 )
+			if ( panel.Class.Any() )
 			{
 				classList = panel.Class.Select( ( i ) => $".{i}" ).Aggregate( ( i, j ) => i + j );
-			} else
+			}
+			else
 			{
 				classList = "";
 			}
@@ -62,20 +57,32 @@ public class InspectorTarget : Panel
 	}
 }
 
-public class InspectorContainer : Panel
+public class Inspector : Panel
 {
 	public Panel CurrentTarget;
-	private InspectorTarget _targeter;
 
-	public InspectorContainer()
+	public Inspector()
 	{
 		this.StyleSheet.Load( "/ui/Inspector.scss" );
-		//this.AddClass( "inspector_container" );	q
-
-		_targeter = this.AddChild<InspectorTarget>();
+		this.AddChild<InspectorTarget>();
 
 		// Renderer won't listen to z-index in css class of Panel. [bug]
 		this.Style.ZIndex = 10000;
+	}
+
+	private static bool enabled_ = false;
+
+	[ClientCmd( name: "inspector" )]
+	public static void ToggleInspector()
+	{
+		enabled_ = !enabled_;
+	}
+
+	public override void Tick()
+	{
+		base.Tick();
+
+		this.SetClass( "enabled", enabled_ );
 	}
 }
 
@@ -91,7 +98,7 @@ static class InspectorUtils
 		if ( p.HasClass( "inspector_container" ) || p.IsDeleting )
 		{
 			return null;
-		}	
+		}
 
 		var foundChild = p;
 		var root = p.FindRootPanel();
