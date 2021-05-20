@@ -21,15 +21,7 @@ public MinimalHudEntity()
   {
     RootPanel.SetTemplate( "/minimalhud.html" );
     RootPanel.AddChild<ChatBox>();
+    ...
     RootPanel.AddChild<Inspector>();
   }
 }
-
-Full usage...
-
-```csharp
-public MinimalHudEntity()
-{
-  if ( IsClient )
-  {
-    RootPanel.SetTemplate( "/minimalhud.html" );
