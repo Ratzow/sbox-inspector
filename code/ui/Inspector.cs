@@ -36,7 +36,7 @@ public class InspectorTarget : Panel
 				classList = "";
 			}
 
-			_infoPanel.Text = $"{panel.ElementName} {Math.Round( panel.Box.Rect.width, 1 )}x{Math.Round( panel.Box.Rect.height, 1 )} {classList}";
+			_infoPanel.Text = $"{panel.ElementName} {Math.Round( panel.Box.Rect.width*ScaleFromScreen, 1 )}x{Math.Round( panel.Box.Rect.height*ScaleFromScreen, 1 )} {classList}";
 
 			var left = panel.Box.Left;
 			var top = panel.Box.Top;
