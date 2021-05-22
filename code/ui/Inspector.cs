@@ -29,7 +29,7 @@ public class InspectorTarget : Panel
 			string classList;
 			if ( panel.Class.Any() )
 			{
-				classList = panel.Class.Select( ( i ) => $".{i}" ).Aggregate( ( i, j ) => i + j );
+				classList = string.Join( ".", panel.Class );
 			}
 			else
 			{
