@@ -22,7 +22,7 @@ public class InspectorTarget : Panel
 
 		var root = FindRootPanel();
 
-		if ( root != null && root.Style != null )
+		if ( root?.Style != null )
 		{
 			var panel = InspectorUtils.GetHoveredPanel( root, root.MousePos ) ?? root;
 
